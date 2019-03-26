@@ -5,3 +5,11 @@ body {
 #addButton {
     margin-top: 10px;
 }
+
+#ingredient-container {
+    margin-top: 30px;
+}
+
+.card {
+    margin-top: 5px;
+}
