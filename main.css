@@ -1,3 +1,7 @@
 body {
     background-color: silver;
 }
+
+#addButton {
+    margin-top: 10px;
+}
