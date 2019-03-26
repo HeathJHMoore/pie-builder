@@ -6,12 +6,30 @@ const printToDom = (divId, textToPrint) => {
     selectedDiv.innerHTML = textToPrint;
 };
 
+const deleteFunction = (e) => {
+    ingredients.forEach((ingredient, index) => {
+        if (e.target.id === ingredient.id) {
+            ingredients.splice(index, 1);
+        };
+    });
+    domStringBuilder(ingredients);
+    addDeleteEvents();
+}
+
+const addDeleteEvents = () => {
+    const deleteButtons = document.getElementsByClassName("deleteButton");
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", deleteFunction);
+    };
+};
+
+
 const domStringBuilder = (arrayToPrint) => {
     let domString = ``;
     arrayToPrint.forEach((ingredient) => {
         domString += `<div class="card col-8">`
         domString +=    `<div class="card-body">`
-        domString +=      `<h5 class="card-title">Card title</h5>`
+        domString +=      `<h5 class="card-title">${ingredient.item}</h5>`
         domString +=      `<a class="btn btn-danger deleteButton" style="cursor: pointer;"id="${ingredient.id}">Delete</a>`
         domString +=    `</div>`
         domString += `</div>`
@@ -29,6 +47,7 @@ const addIngredient = () => {
     ingredients.push(newIngredient);
     ingredientCounter++;
     domStringBuilder(ingredients);
+    addDeleteEvents();
     document.getElementById('ingredientInput').value = ``;
 }
 
